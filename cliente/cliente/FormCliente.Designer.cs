@@ -33,7 +33,7 @@
             this.enviarBoton = new System.Windows.Forms.Button();
             this.participantes = new System.Windows.Forms.RichTextBox();
             this.salirBoton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.nombre = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -96,15 +96,16 @@
             this.salirBoton.Text = "Salir";
             this.salirBoton.UseVisualStyleBackColor = false;
             // 
-            // label1
+            // nombre
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 17);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Chat del DIINF";
+            this.nombre.Text = "";
+            this.nombre.AutoSize = true;
+            this.nombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nombre.Location = new System.Drawing.Point(12, 9);
+            this.nombre.Name = "nombre";
+            this.nombre.Size = new System.Drawing.Size(98, 17);
+            this.nombre.TabIndex = 5;
+            this.nombre.Text = "Chat del DIINF";
             // 
             // label2
             // 
@@ -231,7 +232,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.nombre);
             this.Controls.Add(this.salirBoton);
             this.Controls.Add(this.participantes);
             this.Controls.Add(this.enviarBoton);
@@ -251,7 +252,7 @@
         private System.Windows.Forms.Button enviarBoton;
         private System.Windows.Forms.RichTextBox participantes;
         private System.Windows.Forms.Button salirBoton;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label nombre;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

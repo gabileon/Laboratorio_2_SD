@@ -8,6 +8,7 @@ using cliente.servicioChat;
 using System.Net;
 
 
+
 namespace cliente
 {
     public partial class FormCliente : Form
@@ -19,6 +20,7 @@ namespace cliente
         private Button botonConectar;
         // Hebra para escuchar mensajes
         public Thread receiver;
+        delegate void SetTextCallback();
 
         // Constructor que inicializa la vista
         public FormCliente()
@@ -63,17 +65,19 @@ namespace cliente
                     valorLogin = -1;
                 }
 
-                // Si el retorno es uno, se instancia el Form "Principal" con los parámetros de nombre de
-                // usuario, contraseña y dirección IP los cuales son usados de forma interna por ese Form.
-                // Además, se da inicio al uso de la hebra, en este caso se instancia haciendo uso del método
-                // "packetReceive", se modifica un atributo del Thread y se inicia con el método Start().
-                // Luego, se incluyen los casos para cuando la variable de retorno de la llamada al Servicio
-                // no es el caso exitoso.
+                // El usuario ha ingresado el nombre y contraseña correctamente
                 if (valorLogin == 1)
                 {
+                    // Habilitamos y deshabilitamos lo que corresponda
                     this.chat.Enabled = true;
                     this.botonConectar.Enabled = false;
                     this.desconectarBoton.Enabled = true;
+                    this.nombre.Text = "¡Hola "+ user +"!";
+                    this.mensaje.Enabled = true;
+                    this.participantes.Enabled = true;
+                    this.enviarBoton.Enabled = true;
+                    this.ayudanteSalaBoton.Enabled = true;
+                    // Comienza a actuar la hebra
                     receiver = new Thread(packetReceive);
                     receiver.IsBackground = true;
                     receiver.Start();
@@ -125,18 +129,17 @@ namespace cliente
             // (desde el método "clickBotonLogIn") con el ID de la hebra creada al presionar el botón que llama al
             // Form, los cuales de ser distintos generan un retorno de "true". Esto puede desarrollarse también 
             // con un parámetro como se observa en el método "SetTextpriv" del Form "Principal".
-            if (this.buttonlogin.InvokeRequired)
+            if (this.botonConectar.InvokeRequired)
             {
                 SetTextCallback d = new SetTextCallback(Setboton);
                 this.Invoke(d, new object[] { });
             }
             else
             {
-                this.Focus();
-                this.buttonlogin.Enabled = true;
-                this.buttonregistrar.Enabled = true;
-                this.textBoxnombreusuario.Text = "";
-                this.textBoxpassword.Text = "";
+                this.botonConectar.Enabled = true;
+                this.botonConectar.Enabled = true;
+                this.nickName.Text = "";
+                this.contrasena.Text = "";
                 this.receiver.Abort();
             }
         }
